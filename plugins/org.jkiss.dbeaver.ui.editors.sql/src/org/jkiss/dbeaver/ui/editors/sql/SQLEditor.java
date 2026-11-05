@@ -3054,6 +3054,10 @@ public class SQLEditor extends SQLEditorBase implements
             // Nothing to process
             return false;
         }
+        if (getSourceViewerConfiguration() instanceof SQLEditorSourceViewerConfiguration viewerConfiguration) {
+            // Metadata loading must not delay query execution.
+            viewerConfiguration.cancelCompletionJobs();
+        }
         if (!canProcessQueries()) {
             return false;
         }
